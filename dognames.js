@@ -38,7 +38,7 @@ const HelpIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'How can I help?';
+        const speakOutput = 'You can ask for a picture by saying: show me image number 1';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
