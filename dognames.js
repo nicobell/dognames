@@ -36,13 +36,14 @@ const ShowDogPictureIntentHandler = {
             await ddb.update({
                 TableName: "DogPictures",
                 Key: {
-                    pictureid: 0
+                    'pictureid': 0
                 },
                 ExpressionAttributeValues: {
                     ':newimagenumber': dognumber
                 },
                 UpdateExpression: "set #picturetoshow = :newimagenumber"
             }).promise();
+
             speechText = "You said number " + dognumber;
 
         } catch (err) {
