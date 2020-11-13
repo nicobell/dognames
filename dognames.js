@@ -62,8 +62,27 @@ const ShowAllPicturesIntentHandler = {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
             && handlerInput.requestEnvelope.request.intent.name === 'ShowAllPicturesIntent';
     },
-    handle(handlerInput) {
-        const speechText = 'You asked for all pictures!';
+    async handle(handlerInput) {
+        let speechText = '';
+
+        try {
+            let data = await ddb.update({
+                TableName: "DogPictures",
+                Key: {
+                    "pictureid": 0,
+                },
+                ExpressionAttributeValues: {
+                    ":newimagenumber": 0
+                },
+                UpdateExpression: "set picturetoshow = :newimagenumber"
+            }).promise();
+
+            speechText = "You requested all the images";
+
+        } catch (err) {
+            speechText = "Error while searching all images";
+        };
+
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
