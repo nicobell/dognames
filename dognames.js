@@ -122,7 +122,7 @@ const ErrorHandler = {
         console.log('Error handled: ' + JSON.stringify(error.message));
         // console.log('Original Request was:', JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
-        const speechText = 'Error encountered';
+        const speechText = 'error: ' + JSON.stringify(error.message);
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
