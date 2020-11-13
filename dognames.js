@@ -29,7 +29,7 @@ const ShowDogPictureIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'ShowDogPictureIntent';
     },
     async handle(handlerInput) {
-        const dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
+        var dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
         const speechText = '';
 
         try {
@@ -41,8 +41,8 @@ const ShowDogPictureIntentHandler = {
                 ExpressionAttributeValues: {
                     ':newImageNumber': dognumber
                 },
-                UpdateExpression: "set #pictureToShow = :newImageNumber"
-            }).promise();
+                UpdateExpression: "set pictureToShow = :newImageNumber"
+            });
             speechText = 'You said number ' + dognumber;
 
         } catch (err) {
