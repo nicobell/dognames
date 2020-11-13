@@ -7,15 +7,10 @@ exports.handler = async function (event, context) {
         skill = Alexa.SkillBuilders.custom()
             .addErrorHandlers(ErrorHandler)
             .addRequestHandlers(
-                // delete undefined built-in intent handlers
-                CancelIntentHandler,
+                CancelAndStopIntentHandler,
                 HelpIntentHandler,
-                StopIntentHandler,
-                NavigateHomeIntentHandler,
-                FallbackIntentHandler,
                 LaunchRequestHandler,
-                SessionEndedRequestHandler
-                // add custom Intent handlers
+                ErrorHandler
             ).create();
     }
 
@@ -29,10 +24,39 @@ const LaunchRequestHandler = {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speechText = 'Welcome to dog names';
+        const speechText = 'Welcome to Dog Names!';
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
+            .getResponse();
+    }
+};
+
+const HelpIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'How can I help?';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
+const CancelAndStopIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
+                || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Goodbye!';
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
             .getResponse();
     }
 };
@@ -50,16 +74,5 @@ const ErrorHandler = {
             .speak(speechText)
             .withShouldEndSession(false)
             .getResponse();
-    }
-};
-
-const SessionEndedRequestHandler = {
-    canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
-    },
-    handle(handlerInput) {
-        console.log('Session ended with reason: ', JSON.stringify(handlerInput.requestEnvelope.request.reason));
-        //any cleanup logic goes here
-        return handlerInput.responseBuilder.getResponse();
     }
 };
