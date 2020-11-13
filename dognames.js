@@ -9,8 +9,7 @@ exports.handler = async function (event, context) {
             .addRequestHandlers(
                 CancelAndStopIntentHandler,
                 HelpIntentHandler,
-                LaunchRequestHandler,
-                ErrorHandler
+                LaunchRequestHandler
             ).create();
     }
 
@@ -57,22 +56,6 @@ const CancelAndStopIntentHandler = {
         const speakOutput = 'Goodbye!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .getResponse();
-    }
-};
-
-const ErrorHandler = {
-    canHandle(handlerInput) {
-        return true;
-    },
-    handle(handlerInput, error) {
-        console.log('Error handled: ' + JSON.stringify(error.message));
-        // console.log('Original Request was:', JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
-
-        const speechText = 'Sorry, your skill encountered an error';
-        return handlerInput.responseBuilder
-            .speak(speechText)
-            .withShouldEndSession(false)
             .getResponse();
     }
 };
