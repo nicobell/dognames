@@ -8,7 +8,8 @@ exports.handler = async function (event, context) {
             .addRequestHandlers(
                 CancelAndStopIntentHandler,
                 HelpIntentHandler,
-                LaunchRequestHandler
+                LaunchRequestHandler,
+                ShowDogPictureIntentHandler
             )
             .addErrorHandlers(ErrorHandler)
             .create();
@@ -18,6 +19,23 @@ exports.handler = async function (event, context) {
     //console.log('RESPONSE :' + JSON.stringify(response));
     return response;
 };
+
+const ShowDogPictureIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'ShowDogPictureIntent';
+    },
+    handle(handlerInput) {
+        // invoke custom logic of the handler
+        //const slotValue = Alexa.getSlotValue(handlerInput.requestEnvelope, 'slotName');
+        const speechText = 'You said number';
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .withShouldEndSession(false)
+            .getResponse();
+    }
+};
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
