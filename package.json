@@ -4,5 +4,7 @@
   "dependencies": {
     "ask-sdk": "2.7.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "aws-sdk": "2.644.0"
+  }
 }

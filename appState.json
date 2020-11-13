@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "dognames.js",
         "cursor": {
-          "lineNumber": 29,
-          "column": 27
+          "lineNumber": 42,
+          "column": 19
         },
         "config": {
           "runtime": "nodejs10.x",
@@ -45,6 +45,25 @@
           "skillID": "amzn1.ask.skill.094763b6-776a-4d56-9c26-8d7c4b5c5e47",
           "applicationID": ""
         }
+      },
+      "ddbDogPictures": {
+        "name": "ddbDogPictures",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:us-east-1:001122388545:table/DogPictures",
+            "name": "DogPictures",
+            "partitionKey": "pictureid",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "",
+            "payPerRequest": true,
+            "mode": 1,
+            "secondaryIndexes": {}
+          }
+        }
       }
     },
     "customTemplate": {
@@ -70,6 +89,13 @@
           "language": "nodejs",
           "version": "2.7.0",
           "dev": false,
+          "notRemovable": false
+        },
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "language": "nodejs",
+          "version": "2.644.0",
+          "dev": true,
           "notRemovable": false
         }
       }

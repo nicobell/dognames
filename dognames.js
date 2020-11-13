@@ -1,3 +1,5 @@
+const AWS = require('aws-sdk');
+const ddb = new AWS.DynamoDB.DocumentClient();
 const Alexa = require('ask-sdk');
 let skill;
 
@@ -26,8 +28,25 @@ const ShowDogPictureIntentHandler = {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
             && handlerInput.requestEnvelope.request.intent.name === 'ShowDogPictureIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         const dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
+
+        try {
+            let data = await ddb.update({
+                TableName: "DogPictures",
+                Key: {
+                    'pictureid': 0
+                },
+                ExpressionAttributeValues: {
+                    ':newImageNumber': dognumber
+                },
+                UpdateExpression: "set pictureToShow = :newImageNumber"
+            }).promise();
+
+        } catch (err) {
+            // error handling goes here
+        };
+
 
         const speechText = 'You said number ' + dognumber;
         return handlerInput.responseBuilder
