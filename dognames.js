@@ -29,11 +29,11 @@ const ShowDogPictureIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'ShowDogPictureIntent';
     },
     async handle(handlerInput) {
-        var dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
+        const dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
         const speechText = '';
 
         try {
-            let data = await ddb.update({
+            await ddb.update({
                 TableName: "DogPictures",
                 Key: {
                     pictureid: 0
@@ -48,7 +48,6 @@ const ShowDogPictureIntentHandler = {
         } catch (err) {
             speechText = "Error whiel searching for image " + dognumber;
         };
-
 
         return handlerInput.responseBuilder
             .speak(speechText)

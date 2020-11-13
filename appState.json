@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "dognames.js",
         "cursor": {
-          "lineNumber": 38,
-          "column": 23
+          "lineNumber": 33,
+          "column": 11
         },
         "config": {
           "runtime": "nodejs10.x",
@@ -110,7 +110,7 @@
     "platform": "AWS",
     "language": "nodejs",
     "platformRegions": {},
-    "lastSave": 1605300580122
+    "lastSave": 1605300642878
   },
   "VCS_STATE": {
     "provider": "GitHub",
