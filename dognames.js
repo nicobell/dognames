@@ -41,7 +41,7 @@ const ShowDogPictureIntentHandler = {
                 ExpressionAttributeValues: {
                     ':newImageNumber': dognumber
                 },
-                UpdateExpression: "set pictureToShow = :newImageNumber"
+                UpdateExpression: "set #pictureToShow = :newImageNumber"
             }).promise();
             speechText = 'You said number ' + dognumber;
 
