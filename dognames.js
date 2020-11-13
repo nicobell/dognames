@@ -62,16 +62,17 @@ const CancelAndStopIntentHandler = {
 };
 
 const ErrorHandler = {
-    canHandle() {
+    canHandle(handlerInput) {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
-        console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
+        console.log('Error handled: ' + JSON.stringify(error.message));
+        // console.log('Original Request was:', JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
+        const speechText = 'Sorry, your skill encountered an error';
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
+            .speak(speechText)
+            .withShouldEndSession(false)
             .getResponse();
     }
 };
