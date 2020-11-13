@@ -36,7 +36,7 @@ const ShowDogPictureIntentHandler = {
             let dognumber = await ddb.update({
                 TableName: "DogPictures",
                 Key: {
-                    pictureid: 0
+                    'pictureid': 0
                 },
                 ExpressionAttributeValues: {
                     ':newImageNumber': dognumber
