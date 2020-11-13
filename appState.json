@@ -1,0 +1,96 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "9d5120b7-958e-465b-8619-8b398ef4263a": {
+        "id": "9d5120b7-958e-465b-8619-8b398ef4263a",
+        "parent": null,
+        "name": "dognames.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "dognames.js",
+        "cursor": {
+          "lineNumber": 3,
+          "column": 1
+        },
+        "config": {
+          "runtime": "nodejs10.x",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "name": "dognames"
+        },
+        "triggers": [
+          {
+            "resourceName": "alexaSK094763b6776a4d569c268d7c4b5c5e47",
+            "config": {}
+          }
+        ],
+        "lastUpdated": 1605281567578
+      }
+    },
+    "openFiles": [
+      "9d5120b7-958e-465b-8619-8b398ef4263a"
+    ],
+    "currentFileId": "9d5120b7-958e-465b-8619-8b398ef4263a",
+    "resources": {
+      "alexaSK094763b6776a4d569c268d7c4b5c5e47": {
+        "name": "alexaSK094763b6776a4d569c268d7c4b5c5e47",
+        "type": "ALEXA",
+        "config": {
+          "type": 1,
+          "verifiedID": true,
+          "skillID": "amzn1.ask.skill.094763b6-776a-4d56-9c26-8d7c4b5c5e47",
+          "applicationID": ""
+        }
+      }
+    },
+    "customTemplate": {
+      "syntax": "JSON",
+      "overrideDefault": false,
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "ask-sdk": {
+          "name": "ask-sdk",
+          "language": "nodejs",
+          "version": "2.7.0",
+          "dev": false,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "sigmaVersion": "1.4.4.1",
+    "projectName": "dognames",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "language": "nodejs",
+    "platformRegions": {},
+    "lastSave": 1605281636648
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "dognames",
+      "url": "https://github.com/nicobell/dognames"
+    }
+  }
+}
