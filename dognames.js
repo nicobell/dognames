@@ -5,12 +5,13 @@ exports.handler = async function (event, context) {
     //console.log('REQUEST ' + JSON.stringify(event));
     if (!skill) {
         skill = Alexa.SkillBuilders.custom()
-            .addErrorHandlers(ErrorHandler)
             .addRequestHandlers(
                 CancelAndStopIntentHandler,
                 HelpIntentHandler,
                 LaunchRequestHandler
-            ).create();
+            )
+            .addErrorHandlers(ErrorHandler)
+            .create();
     }
 
     const response = await skill.invoke(event, context);
@@ -56,6 +57,21 @@ const CancelAndStopIntentHandler = {
         const speakOutput = 'Goodbye!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .getResponse();
+    }
+};
+
+const ErrorHandler = {
+    canHandle() {
+        return true;
+    },
+    handle(handlerInput, error) {
+        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
+        console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
             .getResponse();
     }
 };
