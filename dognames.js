@@ -30,6 +30,7 @@ const ShowDogPictureIntentHandler = {
     },
     async handle(handlerInput) {
         const dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
+        const speechText = '';
 
         try {
             let data = await ddb.update({
@@ -42,13 +43,12 @@ const ShowDogPictureIntentHandler = {
                 },
                 UpdateExpression: "set pictureToShow = :newImageNumber"
             }).promise();
+            speechText = 'You said number ' + dognumber;
 
         } catch (err) {
-            // error handling goes here
+            speechText = 'Error updating database with image ' + dognumber
         };
 
-
-        const speechText = 'You said number ' + dognumber;
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
