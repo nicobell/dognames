@@ -80,24 +80,7 @@
               }
             }
           ]
-        },
-        "Policies": [
-          {
-            "PolicyName": "dognamesPolicy",
-            "PolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "dynamodb:UpdateItem"
-                  ],
-                  "Resource": "arn:aws:dynamodb:us-east-1:001122388545:table/DogPictures"
-                }
-              ]
-            }
-          }
-        ]
+        }
       }
     },
     "alexaSK094763b6776adognamesPermission": {
