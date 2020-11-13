@@ -9,7 +9,8 @@ exports.handler = async function (event, context) {
                 CancelAndStopIntentHandler,
                 HelpIntentHandler,
                 LaunchRequestHandler,
-                ShowDogPictureIntentHandler
+                ShowDogPictureIntentHandler,
+                ShowAllPicturesIntentHandler
             )
             .addErrorHandlers(ErrorHandler)
             .create();
@@ -26,9 +27,23 @@ const ShowDogPictureIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'ShowDogPictureIntent';
     },
     handle(handlerInput) {
-        // invoke custom logic of the handler
-        //const slotValue = Alexa.getSlotValue(handlerInput.requestEnvelope, 'slotName');
-        const speechText = 'You said number';
+        const dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
+
+        const speechText = 'You said number ' + dognumber;
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .withShouldEndSession(false)
+            .getResponse();
+    }
+};
+
+const ShowAllPicturesIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'ShowAllPicturesIntentHandler';
+    },
+    handle(handlerInput) {
+        const speechText = 'You asked for all pictures!';
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
