@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "dognames.js",
         "cursor": {
-          "lineNumber": 33,
-          "column": 59
+          "lineNumber": 45,
+          "column": 91
         },
         "config": {
           "runtime": "nodejs10.x",

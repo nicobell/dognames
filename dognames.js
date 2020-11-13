@@ -42,7 +42,7 @@ const ShowDogPictureIntentHandler = {
 const ShowAllPicturesIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-            && handlerInput.requestEnvelope.request.intent.name === 'ShowAllPicturesIntentHandler';
+            && handlerInput.requestEnvelope.request.intent.name === 'ShowAllPicturesIntent';
     },
     handle(handlerInput) {
         const speechText = 'You asked for all pictures!';
@@ -104,7 +104,7 @@ const ErrorHandler = {
         console.log('Error handled: ' + JSON.stringify(error.message));
         // console.log('Original Request was:', JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
-        const speechText = 'Sorry, your skill encountered an error';
+        const speechText = 'Error encountered';
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
