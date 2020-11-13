@@ -28,10 +28,28 @@ const ShowDogPictureIntentHandler = {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
             && handlerInput.requestEnvelope.request.intent.name === 'ShowDogPictureIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         const dognumber = handlerInput.requestEnvelope.request.intent.slots.number.value;
-        const speechText = 'You said number ' + dognumber;
-        
+        const speechText = '';
+
+        try {
+            let dognumber = await ddb.update({
+                TableName: "DogPictures",
+                Key: {
+                    pictureid: 0
+                },
+                ExpressionAttributeValues: {
+                    ':newImageNumber': dognumber
+                },
+                UpdateExpression: "set #pictureToShow = :newImageNumber"
+            }).promise();
+            speechText = 'You said number ' + dognumber;
+
+        } catch (err) {
+            speechText = 'Error while searching image ' + dognumber;
+        };
+
+
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
