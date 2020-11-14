@@ -44,10 +44,10 @@ const ShowDogPictureIntentHandler = {
                 UpdateExpression: "set picturetoshow = :newimagenumber"
             }).promise();
 
-            speechText = "You said number " + dognumber;
+            speechText = "Ok! Showing image number " + dognumber;
 
         } catch (err) {
-            speechText = "Error while searching for image " + dognumber;
+            speechText = "Ops! I found an error while searching for image " + dognumber;
         };
 
         return handlerInput.responseBuilder
@@ -77,10 +77,10 @@ const ShowAllPicturesIntentHandler = {
                 UpdateExpression: "set picturetoshow = :newimagenumber"
             }).promise();
 
-            speechText = "You requested all the images";
+            speechText = "As you say, here there are all images!";
 
         } catch (err) {
-            speechText = "Error while searching all images";
+            speechText = "Ops! I found an error loading all the images!";
         };
 
         return handlerInput.responseBuilder
@@ -96,7 +96,7 @@ const LaunchRequestHandler = {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speechText = 'Welcome to Dog Names!';
+        const speechText = 'Welcome to Images controller app!';
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
@@ -110,7 +110,7 @@ const HelpIntentHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can ask for a picture by saying: show me image number 1';
+        const speakOutput = 'You can ask me to show an image, for example try to say: "Show me image number 1"';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -139,9 +139,8 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         console.log('Error handled: ' + JSON.stringify(error.message));
-        // console.log('Original Request was:', JSON.stringify(handlerInput.requestEnvelope.request, null, 2));
 
-        const speechText = 'error: ' + JSON.stringify(error.message);
+        const speechText = 'Ouch! There was an error with message: ' + JSON.stringify(error.message);
         return handlerInput.responseBuilder
             .speak(speechText)
             .withShouldEndSession(false)
