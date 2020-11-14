@@ -39,7 +39,7 @@ const ShowDogPictureIntentHandler = {
                     "pictureid": 0,
                 },
                 ExpressionAttributeValues: {
-                    ":newimagenumber": dognumber
+                    ":newimagenumber": parseInt(dognumber)
                 },
                 UpdateExpression: "set picturetoshow = :newimagenumber"
             }).promise();
